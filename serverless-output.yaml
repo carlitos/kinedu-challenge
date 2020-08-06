@@ -11,7 +11,7 @@ Resources:
       - DynamoDBCrudPolicy:
           TableName:
             Ref: ContactsTable
-      CodeUri: s3://kinedu-cloud-dev/dbd9ec97473189cee2b9112a815d9bf2
+      CodeUri: s3://kinedu-cloud-dev/2e77a471e9d9901b2d64c1149d310d4f
       MemorySize: 512
       Timeout: 30
       Events:
