@@ -1,1 +1,244 @@
-<div>Visit our landpage: <a href="/landpage">GO</a></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <!-- Website Title -->
+    <title>E-marketing Landing Page</title>
+
+    <!-- Styles -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i&display=swap" rel="stylesheet">
+    <link href="https://serverless-sinatra-assets.s3.amazonaws.com/css/bootstrap.css" rel="stylesheet">
+    <link href="https://serverless-sinatra-assets.s3.amazonaws.com/css/fontawesome-all.css" rel="stylesheet">
+	<link href="https://serverless-sinatra-assets.s3.amazonaws.com/css/styles.css" rel="stylesheet">
+
+	<!-- Favicon  -->
+    <link rel="icon" href="https://serverless-sinatra-assets.s3.amazonaws.com/images/favicon.png">
+
+</head>
+<style media="screen">
+
+    #list-text-color{
+      color:white;
+    }
+
+</style>
+<body data-spy="scroll" data-target=".fixed-top">
+
+    <!-- Preloader -->
+	<div class="spinner-wrapper">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <!-- end of preloader -->
+
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+
+        <!-- Text Logo - Use this if you don't have a graphic logo -->
+        <a class="navbar-brand logo-text" href="/">Carlos Moisés Castro</a>
+
+
+        <!-- Mobile Menu Toggle Button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-awesome fas fa-bars"></span>
+            <span class="navbar-toggler-awesome fas fa-times"></span>
+        </button>
+        <!-- end of mobile menu toggle button -->
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link page-scroll" href="#header">Home <span class="sr-only">(current)</span></a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link page-scroll" href="/landpage">Landpage <span class="sr-only">(current)</span></a>
+                </li>                
+            </ul>
+        </div>
+    </nav> <!-- end of navbar -->
+    <!-- end of navigation -->
+
+
+    <!-- Header -->
+    <header id="header" class="header">
+        <div class="header-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="text-container">
+                            <h1>Kinedu Challenge</h1>
+                        </div>
+                    </div> <!-- end of col -->
+
+                    <div class="col-lg-6">
+
+                        <div class="text-container">
+                            <h1>Things to do</h1>
+                        </div>
+
+                        <div>
+                          <ol id="list-text-color">
+                            <li style="color:white;">Crea una tabla nueva</li>
+                            <li>Crea los endpoints</li>
+                            <li>Conecta la vista con el API</li>
+                            <li>Envia tu código y limpia tu entorno</li>
+                          </ol>
+                        </div>
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+            </div> <!-- end of container -->
+        </div> <!-- end of header-content -->
+
+    </header> <!-- end of header -->
+    <!-- end of header -->
+
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="footer-col first">
+                        <h5>About Kinedu</h5>
+                        <p class="p-small">Kinedu helps parents with creative and age-appropriate activities that support baby’s development from pregnancy to 4 years old.</p>
+                        <p class="p-small">Copyright © 2020</p>
+                    </div>
+                </div> <!-- end of col -->
+
+                  <div class="image-container">
+                      <img class="img-fluid" src="https://serverless-sinatra-assets.s3.amazonaws.com/images/town.png" alt="alternative">
+                  </div> <!-- end of image-container -->
+
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of footer -->
+    <!-- end of footer -->
+
+
+
+    <!-- Scripts -->
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous">
+    </script>
+    <script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous">
+    </script> <!-- jQuery for Bootstrap's JavaScript plugins -->
+    <script src="https://serverless-sinatra-assets.s3.amazonaws.com/js/bootstrap.min.js"></script> <!-- Bootstrap framework -->
+    <script src="https://serverless-sinatra-assets.s3.amazonaws.com/js/validator.min.js"></script> <!-- Validator.js - Bootstrap plugin that validates forms -->
+    <script src="https://serverless-sinatra-assets.s3.amazonaws.com/js/scripts.js"></script> <!-- Custom scripts -->
+
+    <script>
+    $(document).ready(function() {
+
+      $("#contactForm").submit(function(e){
+        e.preventDefault();
+        let fdata = {}
+
+		    fdata["name"] = $("#cname").val();
+		    fdata["email"] = $("#cemail").val();
+        fdata["context"] = $("#cmessage").val();
+
+        var data_string =  "name=" + fdata["name"] + "&email=" + fdata["email"] + "&context=" + fdata["context"];
+
+        console.log('Data String', data_string);
+        console.log('FData String', fdata);
+
+        $.ajax({
+            cache: false,
+            url : "api/contact_messages",
+            type: "POST",
+            dataType : "json",
+            data : JSON.stringify(fdata),
+            success : function(callback){
+                SweetAlertSuccess();
+            },
+            error : function(callback){
+                console.log("Error saving data");
+                gformError();
+                gsubmitMSG(false, callback);
+            }
+        });
+      });
+
+
+      $("#getEbookForm").submit(function(e){
+        e.preventDefault();
+        let fdata = {}
+
+		    fdata["first_name"] = $("#gfirstname").val();
+		    fdata["last_name"] = $("#glastname").val();
+        fdata["phone"] = $("#gphone").val();
+		    fdata["email"] = $("#gemail").val();
+		    fdata["company"] = $("#gcompany").val();
+        fdata["industry"] = $("#gselect").val();
+
+        var data_string =  "firstname=" + fdata["first_name"] + "lastname=" + fdata["last_name"] + "&phone=" + fdata["phone"] + "&email=" + fdata["email"] + "&company=" + fdata["company"] + "&industry=" + fdata["industry"];
+
+        console.log(fdata);
+
+        $.ajax({
+            cache: false,
+            url : "api/contact_messages",
+            type: "POST",
+            dataType : "json",
+            data : JSON.stringify(fdata),
+            success : function(callback){
+                gformSuccess();
+            },
+            error : function(callback){
+                console.log("Error saving data");
+                gformError();
+                gsubmitMSG(false, callback);
+            }
+        });
+      });
+
+    });
+
+
+    function SweetAlertSuccess() {
+        swal("Good job!", "Your message has been sent!", "success");
+        $("#contactForm")[0].reset();
+        $("input").removeClass('notEmpty'); // resets the field label after submission
+    }
+
+
+    function gformSuccess() {
+        $("#getEbookForm")[0].reset();
+        gsubmitMSG(true, "Congratulations, your ebook is on the way!");
+        $("input").removeClass('notEmpty'); // resets the field label after submission
+    }
+
+    function gformError() {
+        $("#getEbookForm").removeClass().addClass('shake animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+            $(this).removeClass();
+        });
+	}
+
+    function gsubmitMSG(valid, msg) {
+        if (valid) {
+            var msgClasses = "h3 text-center tada animated";
+        } else {
+            var msgClasses = "h3 text-center";
+        }
+        $("#gmsgSubmit").removeClass().addClass(msgClasses).text(msg);
+	}
+
+    </script>
+
+
+</body>
+</html>
