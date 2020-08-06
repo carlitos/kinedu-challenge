@@ -10,7 +10,8 @@ Resources:
       Runtime: ruby2.5
       Policies:
         - DynamoDBCrudPolicy:
-            TableName: !Ref LeadsTable 
+            TableName: !Ref LeadsTable
+            TableName: !Ref ContactsTable
       CodeUri: "./"
       MemorySize: 512
       Timeout: 30
@@ -62,10 +63,20 @@ Resources:
     Type: AWS::Serverless::SimpleTable
     Properties:
       TableName: LandpageLeads
-      PrimaryKey: 
+      PrimaryKey:
         Name: id
         Type: String
-      ProvisionedThroughput: 
+      ProvisionedThroughput:
+        ReadCapacityUnits: 2
+        WriteCapacityUnits: 2
+  ContactsTable:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      TableName: ContactMessages
+      PrimaryKey:
+        Name: id
+        Type: String
+      ProvisionedThroughput:
         ReadCapacityUnits: 2
         WriteCapacityUnits: 2
 Outputs:
