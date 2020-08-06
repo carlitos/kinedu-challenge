@@ -14,13 +14,19 @@ GEM
       aws-sdk-core (~> 3, >= 3.39.0)
       aws-sigv4 (~> 1.0)
     aws-sigv4 (1.0.3)
+    coderay (1.1.3)
     diff-lcs (1.3)
     jmespath (1.4.0)
     json (2.1.0)
+    method_source (1.0.0)
     mustermann (1.0.3)
+    pry (0.13.1)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
+    pry-remote (0.1.8)
+      pry (~> 0.9)
+      slop (~> 3.0)
     rack (2.1.4)
-    rack-contrib (2.1.0)
-      rack (~> 2.0)
     rack-protection (2.0.4)
       rack
     rack-test (1.1.0)
@@ -45,6 +51,7 @@ GEM
       rack (~> 2.0)
       rack-protection (= 2.0.4)
       tilt (~> 2.0)
+    slop (3.6.0)
     tilt (2.0.8)
 
 PLATFORMS
@@ -53,8 +60,9 @@ PLATFORMS
 DEPENDENCIES
   aws-record
   json
+  pry
+  pry-remote
   rack
-  rack-contrib
   rack-test
   rake
   rspec
