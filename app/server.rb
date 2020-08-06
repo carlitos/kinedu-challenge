@@ -54,16 +54,15 @@ post '/api/contact_messages' do
   content_type :json
   item = ContactMessageController.create(params)
   item.to_h.to_json
-
 end
 
 get '/api/contact_messages/:id' do
-  binding.remote_pry
+  # params.inspect
   content_type :json
-  item = ContactMessageController.get_by_id(params)
+  item = ContactMessageController.find_by_id( params["id"] )
 end
-#
-# get '/api/contact_messages?email=:email' do
-#   content_type :json
-#   items = ContactMessageController.find_by_email(params)
-# end
+
+get '/api/contact_messages/get_by_email/:email'  do
+   content_type :json
+   items = ContactMessageController.find_by_email(params['email'])
+end
