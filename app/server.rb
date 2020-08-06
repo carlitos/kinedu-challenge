@@ -1,8 +1,12 @@
 require 'sinatra'
 require 'rubygems'
 require 'aws-record'
+
+
 require_relative "models/landpage_lead.rb"
+require_relative "models/contact_message.rb"
 require_relative "controllers/landpage_lead_controller.rb"
+require_relative "controllers/contact_message_controller.rb"
 
 
 before do
@@ -26,7 +30,7 @@ end
 
 
 ##################################
-# For the API
+# Routes API
 ##################################
 
 get '/api/lead' do
@@ -40,3 +44,26 @@ post '/api/lead' do
   item.to_h.to_json
 end
 
+
+get '/api/contact_messages' do
+  content_type :json
+  items = ContactMessageController.list
+end
+
+post '/api/contact_messages' do
+  content_type :json
+  item = ContactMessageController.create(params)
+  item.to_h.to_json
+
+end
+
+get '/api/contact_messages/:id' do
+  binding.remote_pry
+  content_type :json
+  item = ContactMessageController.get_by_id(params)
+end
+#
+# get '/api/contact_messages?email=:email' do
+#   content_type :json
+#   items = ContactMessageController.find_by_email(params)
+# end
