@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <!-- Website Title -->
     <title>E-marketing Landing Page</title>
@@ -214,25 +215,23 @@
         e.preventDefault();
         let fdata = {}
 
-		    fdata["first_name"] = $("#gfirstname").val();
-		    fdata["last_name"] = $("#glastname").val();
-        fdata["phone"] = $("#gphone").val();
-		    fdata["email"] = $("#gemail").val();
-		    fdata["company"] = $("#gcompany").val();
-        fdata["industry"] = $("#gselect").val();
+		    fdata["name"] = $("#cname").val();
+		    fdata["email"] = $("#cemail").val();
+        fdata["context"] = $("#cmessage").val();
 
-        var data_string =  "firstname=" + fdata["first_name"] + "lastname=" + fdata["last_name"] + "&phone=" + fdata["phone"] + "&email=" + fdata["email"] + "&company=" + fdata["company"] + "&industry=" + fdata["industry"];
+        var data_string =  "name=" + fdata["name"] + "&email=" + fdata["email"] + "&context=" + fdata["context"];
 
-        console.log(fdata);
+        console.log('Data String', data_string);
+        console.log('FData String', fdata);
 
         $.ajax({
             cache: false,
-            url : "api/lead",
+            url : "api/contact_messages",
             type: "POST",
             dataType : "json",
             data : JSON.stringify(fdata),
             success : function(callback){
-                gformSuccess();
+                SweetAlertSuccess();
             },
             error : function(callback){
                 console.log("Error saving data");
@@ -266,7 +265,6 @@
             data : JSON.stringify(fdata),
             success : function(callback){
                 gformSuccess();
-
             },
             error : function(callback){
                 console.log("Error saving data");
@@ -278,6 +276,12 @@
 
     });
 
+
+    function SweetAlertSuccess() {
+        swal("Good job!", "Your message has been sent!", "success");
+        $("#contactForm")[0].reset();
+        $("input").removeClass('notEmpty'); // resets the field label after submission
+    }
 
 
     function gformSuccess() {
