@@ -17,16 +17,21 @@ class ContactMessageController
         item
     end
 
-    def self.get_by_id(params)
-      
-      item.id = params.id
-      item = ContactMessages.find(item.id)
-      item.to_json
+    def self.find_by_id( id )
+      item = ContactMessages.find(id: id)
+      item.to_h.to_json
     end
 
-    # def self.find_by_email(params)
-    #   item = ContactMessages.Book.find(:all, :where => 'email = "nrubio@congresogto.gob.mx"')
-    #   item.to_json
-    # end
-
+    def self.find_by_email( email )
+      item = ContactMessages.query(
+        key_condition_expression: "#A = :a",
+        expression_attribute_names: {
+          "#A" => "email"
+      },
+        expression_attribute_values: {
+          ":a" => email
+        }
+      )
+      item.to_json
+    end
 end
